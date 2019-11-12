@@ -96,8 +96,8 @@ function clickManager(event) {
 
     select3PicsAndRender();
   } else {
-    // render final result function
-    finalResult();
+
+    createPicChart();
 
   }
 
@@ -126,10 +126,42 @@ placeholder2.addEventListener('click', clickManager);
 // placeholder0.removeEventListener('click', clickManager);
 // placeholder1.removeEventListener('click', clickManager);
 // placeholder2.removeEventListener('click', clickManager);
-function finalResult() {
-  for (var Index = 0; Index < picStorage.length; Index++) {
-    var statement = 'The product ' + picStorage[Index].name + ' had ' + picStorage[Index].timesClicked + ' votes and was shown ' + picStorage[Index].timesShown + ' times.\n'
-    document.write(statement);
-    document.write("<br>");
+function createPicChart() {
+  var nameArray = [];
+  var clickArray = [];
+
+  for (var i = 0; i < picStorage.length; i++) {
+    nameArray.push(picStorage[i].name);
+    clickArray.push(picStorage[i].timesClicked);
   }
+  var context = document.getElementById('chart').getContext('2d');
+  var picChart = new Chart(context, {
+    type: 'bar',
+    data: {
+      labels: nameArray,
+      datasets: [
+        {
+          label: 'Pic Clicks',
+          data: clickArray,
+          backgroundColor: 'rgb(255,99,132)',
+          borderColor: 'rgb(255,99,132)',
+        },
+        {
+          label: 'Pic Clicks',
+          data: clickArray,
+        }
+      ],
+    },
+    options: {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            }
+          },
+        ],
+      }
+    },
+  });
 }
