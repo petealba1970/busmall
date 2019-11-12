@@ -130,5 +130,6 @@ function finalResult() {
   for (var Index = 0; Index < picStorage.length; Index++) {
     var statement = 'The product ' + picStorage[Index].name + ' had ' + picStorage[Index].timesClicked + ' votes and was shown ' + picStorage[Index].timesShown + ' times.\n'
     document.write(statement);
+    document.write("<br>");
   }
 }
