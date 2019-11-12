@@ -18,6 +18,7 @@ function select3PicsAndRender() {
 
     if (!randomPics.includes(nextRandomValue)) {
       randomPics.push(nextRandomValue);
+      console.log(nextRandomValue);
     }
   }
 
@@ -78,6 +79,7 @@ function clickManager(event) {
 
     if (event.target.id === 'placeholder-0') {
       picIndex = 0;
+
     } else if (event.target.id === 'placeholder-1') {
       picIndex = 1;
     } else {
@@ -88,8 +90,11 @@ function clickManager(event) {
 
     select3PicsAndRender();
   } else {
+
     alert('game over');
+
   }
+
 
 
 
