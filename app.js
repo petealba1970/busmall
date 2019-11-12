@@ -18,8 +18,9 @@ function select3PicsAndRender() {
 
     if (!randomPics.includes(nextRandomValue)) {
       randomPics.push(nextRandomValue);
-      console.log(nextRandomValue);
     }
+    //console.log(randomPics);
+    ;
   }
 
   // render the pics :D - This is a great place to increase your times shown ;)
@@ -30,8 +31,13 @@ function select3PicsAndRender() {
   // randomPics has 3 pics!
 
   picStorage[randomPics[0]].render(placeholder0);
+  picStorage[randomPics[0]].timesShown++;
   picStorage[randomPics[1]].render(placeholder1);
+  picStorage[randomPics[1]].timesShown++;
   picStorage[randomPics[2]].render(placeholder2);
+  picStorage[randomPics[2]].timesShown++;
+  console.log(picStorage[randomPics[0]]);
+
 }
 
 var Picture = function (name, picture) {
@@ -90,20 +96,22 @@ function clickManager(event) {
 
     select3PicsAndRender();
   } else {
-
-    alert('game over');
+    // render final result function
+    finalResult();
 
   }
 
 
-
-
-  // I know the id of the clicked picture
-  // I know I have an array called randomGoats with the randomly selected goats
-  // I know I have an array called goatStorage with all the goats
-  // I know that I can do goatStorage[randomGoats[...]] to select a specific goat
-
 }
+
+
+
+// I know the id of the clicked picture
+// I know I have an array called randomGoats with the randomly selected goats
+// I know I have an array called goatStorage with all the goats
+// I know that I can do goatStorage[randomGoats[...]] to select a specific goat
+
+
 select3PicsAndRender();
 
 var placeholder0 = document.getElementById('placeholder-0');
@@ -114,6 +122,13 @@ placeholder0.addEventListener('click', clickManager);
 placeholder1.addEventListener('click', clickManager);
 placeholder2.addEventListener('click', clickManager);
 
-
-
-
+// remove event listeners
+// placeholder0.removeEventListener('click', clickManager);
+// placeholder1.removeEventListener('click', clickManager);
+// placeholder2.removeEventListener('click', clickManager);
+function finalResult() {
+  for (var Index = 0; Index < picStorage.length; Index++) {
+    var statement = 'The product ' + picStorage[Index].name + ' had ' + picStorage[Index].timesClicked + ' votes and was shown ' + picStorage[Index].timesShown + ' times.'
+    document.write(statement);
+  }
+}
