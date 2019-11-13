@@ -7,22 +7,26 @@ var MAX_CLICK_COUNTER = 25;
 function getRandomPicIndex() {
   return Math.floor(Math.random() * (picStorage.length));
 }
+var newValues = [];
 
 function select3PicsAndRender() {
   // select 3 pics :p
   // we need a loop to select numbers
+
   randomPics = [];
+
 
   while (randomPics.length < 3) {
     var nextRandomValue = getRandomPicIndex();
-
-    if (!randomPics.includes(nextRandomValue)) {
+    if (nextRandomValue === newValues[0] || nextRandomValue === newValues[1] || nextRandomValue === newValues[2]) {
+      nextRandomValue = getRandomPicIndex();
+    } else if (!randomPics.includes(nextRandomValue)) {
       randomPics.push(nextRandomValue);
     }
-    //console.log(randomPics);
-    ;
   }
-
+  newValues = randomPics;
+  console.log('kkkkkk' + newValues);
+  console.log(randomPics);
   // render the pics :D - This is a great place to increase your times shown ;)
   var placeholder0 = document.getElementById('placeholder-0');
   var placeholder1 = document.getElementById('placeholder-1');
@@ -36,7 +40,7 @@ function select3PicsAndRender() {
   picStorage[randomPics[1]].timesShown++;
   picStorage[randomPics[2]].render(placeholder2);
   picStorage[randomPics[2]].timesShown++;
-  console.log(picStorage[randomPics[0]]);
+
 
 }
 
@@ -122,10 +126,7 @@ placeholder0.addEventListener('click', clickManager);
 placeholder1.addEventListener('click', clickManager);
 placeholder2.addEventListener('click', clickManager);
 
-// remove event listeners
-// placeholder0.removeEventListener('click', clickManager);
-// placeholder1.removeEventListener('click', clickManager);
-// placeholder2.removeEventListener('click', clickManager);
+
 function createPicChart() {
   var nameArray = [];
   var clickArray = [];
