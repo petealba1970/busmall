@@ -25,8 +25,7 @@ function select3PicsAndRender() {
     }
   }
   newValues = randomPics;
-  console.log('kkkkkk' + newValues);
-  console.log(randomPics);
+
   // render the pics :D - This is a great place to increase your times shown ;)
   var placeholder0 = document.getElementById('placeholder-0');
   var placeholder1 = document.getElementById('placeholder-1');
@@ -100,21 +99,9 @@ function clickManager(event) {
 
     select3PicsAndRender();
   } else {
-
     createPicChart();
-
   }
-
-
 }
-
-
-
-// I know the id of the clicked picture
-// I know I have an array called randomGoats with the randomly selected goats
-// I know I have an array called goatStorage with all the goats
-// I know that I can do goatStorage[randomGoats[...]] to select a specific goat
-
 
 select3PicsAndRender();
 
