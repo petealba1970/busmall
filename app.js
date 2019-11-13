@@ -167,7 +167,7 @@ function createPicChart() {
     clickArray.push(picStorage[i].timesClicked);
     shownArray.push(picStorage[i].timesShown);
   }
-  Chart.defaults.global.defaultFontColor = 'black';
+  Chart.defaults.global.defaultFontColor = 'white';
   var context = document.getElementById('chart').getContext('2d');
   var picChart = new Chart(context, {
     type: 'bar',
@@ -187,8 +187,8 @@ function createPicChart() {
         {
           label: 'Pics Shown',
           data: shownArray,
-          backgroundColor: 'rgb(100,50,50)',
-          borderColor: 'rgb(100,50,50)'
+          backgroundColor: 'rgb(150,50,50)',
+          borderColor: 'rgb(150,50,50)'
         },
         {
           label: 'Pic Shown',
