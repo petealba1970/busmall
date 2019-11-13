@@ -10,8 +10,6 @@ function getRandomPicIndex() {
 var newValues = [];
 
 function select3PicsAndRender() {
-  // select 3 pics :p
-  // we need a loop to select numbers
 
   randomPics = [];
 
@@ -26,12 +24,9 @@ function select3PicsAndRender() {
   }
   newValues = randomPics;
 
-  // render the pics :D - This is a great place to increase your times shown ;)
   var placeholder0 = document.getElementById('placeholder-0');
   var placeholder1 = document.getElementById('placeholder-1');
   var placeholder2 = document.getElementById('placeholder-2');
-  // Invariants:
-  // randomPics has 3 pics!
 
   picStorage[randomPics[0]].render(placeholder0);
   picStorage[randomPics[0]].timesShown++;
@@ -47,7 +42,7 @@ var Picture = function (name, picture) {
   this.name = name;
   this.picture = picture;
   this.timesClicked = 0;
-  this.timesShown = 0; // hint hint ;). You may need to use this for your app ;)
+  this.timesShown = 0;
 
   this.markClick = function () {
     this.timesClicked++;
