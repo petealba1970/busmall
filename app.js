@@ -45,7 +45,6 @@ function select3PicsAndRender() {
 var Picture = function (name, picture) {
   this.name = name;
   this.picture = picture;
-  // we want to preserve these
   this.timesClicked = 0;
   this.timesShown = 0;
 
@@ -56,6 +55,7 @@ var Picture = function (name, picture) {
     domReference.src = this.picture;
   }
   this.loadData = function (data) {
+
     this.timesClicked = data.timesClicked;
     this.timesShown = data.timesShown;
     this.name = data.name;
@@ -110,7 +110,8 @@ if (localStorage.getItem(PIC_DATA) === null) {
 } else {
   var jsonData = localStorage.getItem(PIC_DATA);
   var data = JSON.parse(jsonData);
-  for (var i = 0; i < data.length; i++); {
+
+  for (var i = 0; i < data.length; i++) {
     var newPicture = new Picture('', '');
     newPicture.loadData(data[i]);
     picStorage.push(newPicture);
