@@ -124,6 +124,7 @@ function createPicChart() {
     clickArray.push(picStorage[i].timesClicked);
     shownArray.push(picStorage[i].timesShown);
   }
+  Chart.defaults.global.defaultFontColor = 'black';
   var context = document.getElementById('chart').getContext('2d');
   var picChart = new Chart(context, {
     type: 'bar',
