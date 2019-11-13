@@ -117,10 +117,12 @@ placeholder2.addEventListener('click', clickManager);
 function createPicChart() {
   var nameArray = [];
   var clickArray = [];
+  var shownArray = [];
 
   for (var i = 0; i < picStorage.length; i++) {
     nameArray.push(picStorage[i].name);
     clickArray.push(picStorage[i].timesClicked);
+    shownArray.push(picStorage[i].timesShown);
   }
   var context = document.getElementById('chart').getContext('2d');
   var picChart = new Chart(context, {
@@ -137,7 +139,18 @@ function createPicChart() {
         {
           label: 'Pic Clicks',
           data: clickArray,
+        },
+        {
+          label: 'Pics Shown',
+          data: shownArray,
+          backgroundColor: 'rgb(100,50,50)',
+          borderColor: 'rgb(100,50,50)'
+        },
+        {
+          label: 'Pic Shown',
+          data: shownArray,
         }
+
       ],
     },
     options: {
