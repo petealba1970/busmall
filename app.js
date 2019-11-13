@@ -7,21 +7,24 @@ var MAX_CLICK_COUNTER = 25;
 function getRandomPicIndex() {
   return Math.floor(Math.random() * (picStorage.length));
 }
+var newValues = [];
 
 function select3PicsAndRender() {
   // select 3 pics :p
   // we need a loop to select numbers
+
   randomPics = [];
+
 
   while (randomPics.length < 3) {
     var nextRandomValue = getRandomPicIndex();
-
-    if (!randomPics.includes(nextRandomValue)) {
+    if (nextRandomValue === newValues[0] || nextRandomValue === newValues[1] || nextRandomValue === newValues[2]) {
+      nextRandomValue = getRandomPicIndex();
+    } else if (!randomPics.includes(nextRandomValue)) {
       randomPics.push(nextRandomValue);
     }
-    //console.log(randomPics);
-    ;
   }
+  newValues = randomPics;
 
   // render the pics :D - This is a great place to increase your times shown ;)
   var placeholder0 = document.getElementById('placeholder-0');
@@ -36,7 +39,7 @@ function select3PicsAndRender() {
   picStorage[randomPics[1]].timesShown++;
   picStorage[randomPics[2]].render(placeholder2);
   picStorage[randomPics[2]].timesShown++;
-  console.log(picStorage[randomPics[0]]);
+
 
 }
 
@@ -96,21 +99,9 @@ function clickManager(event) {
 
     select3PicsAndRender();
   } else {
-    // render final result function
-    finalResult();
-
+    createPicChart();
   }
-
-
 }
-
-
-
-// I know the id of the clicked picture
-// I know I have an array called randomGoats with the randomly selected goats
-// I know I have an array called goatStorage with all the goats
-// I know that I can do goatStorage[randomGoats[...]] to select a specific goat
-
 
 select3PicsAndRender();
 
@@ -122,14 +113,56 @@ placeholder0.addEventListener('click', clickManager);
 placeholder1.addEventListener('click', clickManager);
 placeholder2.addEventListener('click', clickManager);
 
-// remove event listeners
-// placeholder0.removeEventListener('click', clickManager);
-// placeholder1.removeEventListener('click', clickManager);
-// placeholder2.removeEventListener('click', clickManager);
-function finalResult() {
-  for (var Index = 0; Index < picStorage.length; Index++) {
-    var statement = 'The product ' + picStorage[Index].name + ' had ' + picStorage[Index].timesClicked + ' votes and was shown ' + picStorage[Index].timesShown + ' times.\n'
-    document.write(statement);
-    document.write("<br>");
+
+function createPicChart() {
+  var nameArray = [];
+  var clickArray = [];
+  var shownArray = [];
+
+  for (var i = 0; i < picStorage.length; i++) {
+    nameArray.push(picStorage[i].name);
+    clickArray.push(picStorage[i].timesClicked);
+    shownArray.push(picStorage[i].timesShown);
   }
+  var context = document.getElementById('chart').getContext('2d');
+  var picChart = new Chart(context, {
+    type: 'bar',
+    data: {
+      labels: nameArray,
+      datasets: [
+        {
+          label: 'Pic Clicks',
+          data: clickArray,
+          backgroundColor: 'rgb(255,99,132)',
+          borderColor: 'rgb(255,99,132)',
+        },
+        {
+          label: 'Pic Clicks',
+          data: clickArray,
+        },
+        {
+          label: 'Pics Shown',
+          data: shownArray,
+          backgroundColor: 'rgb(100,50,50)',
+          borderColor: 'rgb(100,50,50)'
+        },
+        {
+          label: 'Pic Shown',
+          data: shownArray,
+        }
+
+      ],
+    },
+    options: {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            }
+          },
+        ],
+      }
+    },
+  });
 }
